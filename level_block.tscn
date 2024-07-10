@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpdygdi2pc845"]
+
+[ext_resource type="Texture2D" uid="uid://q7nrtx57bqcy" path="res://Tilemap/tilemap.png" id="1_wyoyb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve85c"]
+size = Vector2(75, 75)
+
+[node name="sky_tile" type="StaticBody2D"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_ve85c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_wyoyb")
+hframes = 20
+vframes = 9

@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://bkitwm12q7qwk"]
+
+[ext_resource type="Texture2D" uid="uid://c7h02rh80su2r" path="res://My_spritesx/dust1.png" id="1_durgn"]
+[ext_resource type="Texture2D" uid="uid://c833ahdf2post" path="res://My_spritesx/dust2.png" id="2_blk0q"]
+[ext_resource type="Texture2D" uid="uid://ctoacnm7iq31a" path="res://My_spritesx/dust3.png" id="3_hsqxm"]
+[ext_resource type="Texture2D" uid="uid://dv3wbvtrm65w0" path="res://My_spritesx/dust4.png" id="4_8l0eh"]
+[ext_resource type="Script" path="res://dust.gd" id="5_pkcd0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kjrna"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_durgn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_blk0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hsqxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8l0eh")
+}],
+"loop": false,
+"name": &"landing",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_yaosn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sj2kk"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x48mj"]
+_data = {
+"RESET": SubResource("Animation_yaosn"),
+"start": SubResource("Animation_sj2kk")
+}
+
+[node name="landing" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(0, -14.12)
+scale = Vector2(1.35, 1)
+sprite_frames = SubResource("SpriteFrames_kjrna")
+animation = &"landing"
+autoplay = "landing"
+frame = 2
+frame_progress = 0.572878
+script = ExtResource("5_pkcd0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x48mj")
+}
+autoplay = "start"
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

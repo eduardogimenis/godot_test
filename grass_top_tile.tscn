@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkr3s48rxxxmt"]
+
+[ext_resource type="Texture2D" uid="uid://q7nrtx57bqcy" path="res://Tilemap/tilemap.png" id="1_fh17x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ul77e"]
+size = Vector2(17.5, 18)
+
+[node name="grass_top_tile" type="StaticBody2D"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.42, 1)
+shape = SubResource("RectangleShape2D_ul77e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 5
+texture = ExtResource("1_fh17x")
+hframes = 20
+vframes = 9
+frame = 18
